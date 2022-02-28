@@ -3,6 +3,8 @@
  */
 package com.example.practica1.parserLexer;
 
+import com.example.practica1.parserLexer.chartCode.ChartCode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,6 +45,7 @@ public class Execute {
     }
     
     public void addExecuteCall(String name){
+        System.out.println(name);
         chartsNames.add(name);
     }
     

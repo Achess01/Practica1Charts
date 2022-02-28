@@ -66,7 +66,7 @@ Semicolon = [;]
 /* Strings */
 
 Q = [\"]
-StringContent = ([^\"\n\r])*
+StringContent = ([^\"\n\r]|[\n])*
 String = {Q}{StringContent}{Q}
 
 %%

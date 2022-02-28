@@ -1,7 +1,7 @@
 /*
  * Welcome
  */
-package com.example.practica1.parserLexer;
+package com.example.practica1.parserLexer.chartCode;
 
 import java.util.ArrayList;
 

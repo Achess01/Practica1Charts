@@ -6,6 +6,8 @@
 package com.example.practica1.parserLexer.parser;
 
 import com.example.practica1.parserLexer.lexer.LexerP1;
+import com.example.practica1.parserLexer.chartCode.*;
+import com.example.practica1.parserLexer.attributes.*;
 import com.example.practica1.parserLexer.*;
 import java.util.ArrayList;
 import java_cup.runtime.XMLElement;

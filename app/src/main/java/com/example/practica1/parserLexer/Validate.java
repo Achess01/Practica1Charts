@@ -4,6 +4,12 @@
 package com.example.practica1.parserLexer;
 
 import com.example.practica1.parserLexer.Errors.Errors;
+import com.example.practica1.parserLexer.attributes.ArrayNode;
+import com.example.practica1.parserLexer.attributes.Attribute;
+import com.example.practica1.parserLexer.attributes.Operation;
+import com.example.practica1.parserLexer.chartCode.BarChartCode;
+import com.example.practica1.parserLexer.chartCode.PieChartCode;
+
 import java.util.ArrayList;
 
 /**
@@ -150,6 +156,7 @@ public class Validate {
                        total = getValue(attr);
                        totalLine = attr.getLine();
                        error = total == null ? true : error;
+                       error = total.equals(0) ? true : error;
                    }
                    break;
            }            

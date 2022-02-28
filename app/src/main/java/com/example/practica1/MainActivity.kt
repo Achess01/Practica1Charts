@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else{
-                val toast = Toast.makeText(this, "No sé", Toast.LENGTH_SHORT);
+                val toast = Toast.makeText(this, "No hay gráficas para mostrar", Toast.LENGTH_SHORT);
                 toast.show();
             }
         }

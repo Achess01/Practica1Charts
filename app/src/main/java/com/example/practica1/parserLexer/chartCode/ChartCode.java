@@ -1,7 +1,7 @@
 /*
  * Welcome
  */
-package com.example.practica1.parserLexer;
+package com.example.practica1.parserLexer.chartCode;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,8 @@ public abstract class ChartCode {
     protected ArrayList<Integer[]> union;
     protected ArrayList<String> x_labels;
     protected ArrayList<Float> y_values;
+    protected String extraLabel;
+    protected Float extraValue;
 
     public ChartCode(String title, ArrayList<Double> values, ArrayList<String> labels, ArrayList<Integer[]> coords) {
         this.title = title;
@@ -48,12 +50,16 @@ public abstract class ChartCode {
                 int y = ints[1];
                 if (
                         x >= 0 && x < labels.size()
-                                && y >= 0 && y < values.size()
+                        && y >= 0 && y < values.size()
                 ) {
                     x_labels.add(labels.get(x));
                     Float y_val = values.get(y).floatValue();
                     y_values.add(y_val);
                 }
+            }
+            if(extraLabel != null && extraValue != null){
+                x_labels.add(extraLabel);
+                y_values.add(extraValue);
             }
         }
     }

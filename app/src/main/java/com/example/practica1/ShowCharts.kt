@@ -4,10 +4,10 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
-import com.example.practica1.parserLexer.BarChartCode
-import com.example.practica1.parserLexer.ChartCode
+import com.example.practica1.parserLexer.chartCode.BarChartCode
+import com.example.practica1.parserLexer.chartCode.ChartCode
 import com.example.practica1.parserLexer.Execute
-import com.example.practica1.parserLexer.PieChartCode
+import com.example.practica1.parserLexer.chartCode.PieChartCode
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
@@ -15,6 +15,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.MPPointF
 
 class ShowCharts : AppCompatActivity() {
 
@@ -47,6 +48,7 @@ class ShowCharts : AppCompatActivity() {
         chart.legend.isEnabled = false
         chart.invalidate()
         chart.description.text = title
+        chart.description.textSize = 20f;
         chart.setBackgroundColor(Color.WHITE)
         chart.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1000);
         axisX(chart.xAxis, labels)
@@ -58,6 +60,7 @@ class ShowCharts : AppCompatActivity() {
     private fun getPieChart(title: String, values: ArrayList<Float>, labels: ArrayList<String>): PieChart {
         val chart = PieChart(this);
         chart.description.text = title
+        chart.description.textSize = 20f;
         chart.setBackgroundColor(Color.WHITE)
         chart.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1000);
         chart.holeRadius = 10f
@@ -80,7 +83,7 @@ class ShowCharts : AppCompatActivity() {
         val pieDataSet = PieDataSet(getPieEntries(values, labels), "")
         pieDataSet.colors = colors;
         pieDataSet.sliceSpace = 2f
-
+        pieDataSet.valueTextSize = 12f
         pieDataSet.valueFormatter = PercentFormatter()
         return PieData(pieDataSet)
     }
@@ -93,8 +96,9 @@ class ShowCharts : AppCompatActivity() {
 
     private fun axisX(axis: XAxis, labels: ArrayList<String>){
         axis.isGranularityEnabled = true
-        axis.position = XAxis.XAxisPosition.BOTTOM;
+        axis.position = XAxis.XAxisPosition.BOTTOM_INSIDE;
         axis.valueFormatter = IndexAxisValueFormatter(labels);
+        axis.textSize = 15f
     }
 
     private fun axisLeft(axis: YAxis) {
@@ -111,6 +115,7 @@ class ShowCharts : AppCompatActivity() {
         var barDataSet = BarDataSet(getBarEntries(values), "")
         barDataSet.barShadowColor = Color.GRAY
         barDataSet.colors = colors;
+        barDataSet.valueTextSize = 15f
         val barData = BarData(barDataSet)
         barData.barWidth = 0.45f
         return barData
