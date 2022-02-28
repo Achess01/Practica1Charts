@@ -34,6 +34,7 @@ public class Compile {
             ParserP1 parser = new ParserP1(lexer);
             try{
                 Errors.getErrors().clear();
+                Execute.getExecute().clear();
                 parser.parse();
             }
             catch(Exception ex){

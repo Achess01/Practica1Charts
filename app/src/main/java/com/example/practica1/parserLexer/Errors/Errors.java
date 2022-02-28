@@ -3,6 +3,8 @@
  */
 package com.example.practica1.parserLexer.Errors;
 
+import com.example.practica1.parserLexer.Execute;
+
 import java.util.ArrayList;
 
 /**

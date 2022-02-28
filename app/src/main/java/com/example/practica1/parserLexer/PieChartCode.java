@@ -31,24 +31,12 @@ public class PieChartCode extends ChartCode{
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
     public String getExtra() {
         return extra;
-    }
-
-    public void setExtra(String extra) {
-        this.extra = extra;
     }
 
      @Override

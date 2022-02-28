@@ -5,13 +5,8 @@
 
 package com.example.practica1.parserLexer.parser;
 
-import com.example.practica1.parserLexer.ArrayNode;
-import com.example.practica1.parserLexer.BarChartCode;
-import com.example.practica1.parserLexer.PieChartCode;
-import com.example.practica1.parserLexer.Operation;
-import com.example.practica1.parserLexer.Attribute;
-import com.example.practica1.parserLexer.Validate;
 import com.example.practica1.parserLexer.lexer.LexerP1;
+import com.example.practica1.parserLexer.*;
 import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
 
@@ -62,19 +57,19 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\153\000\006\024\004\042\006\001\002\000\006\025" +
-    "\021\026\022\001\002\000\004\002\020\001\002\000\004" +
-    "\013\013\001\002\000\010\002\ufffe\024\004\042\006\001" +
-    "\002\000\010\002\ufffd\024\004\042\006\001\002\000\004" +
-    "\002\uffff\001\002\000\004\002\001\001\002\000\004\015" +
-    "\014\001\002\000\004\014\015\001\002\000\004\004\016" +
-    "\001\002\000\034\002\ufffc\010\ufffc\024\ufffc\027\ufffc\030" +
-    "\ufffc\031\ufffc\032\ufffc\033\ufffc\034\ufffc\035\ufffc\036\ufffc" +
-    "\037\ufffc\042\ufffc\001\002\000\010\002\uffcc\024\uffcc\042" +
-    "\uffcc\001\002\000\004\002\000\001\002\000\004\007\136" +
+    "\000\153\000\006\024\004\042\007\001\002\000\006\025" +
+    "\021\026\022\001\002\000\010\002\ufffe\024\004\042\007" +
+    "\001\002\000\004\002\017\001\002\000\004\013\012\001" +
+    "\002\000\010\002\ufffd\024\004\042\007\001\002\000\004" +
+    "\002\uffff\001\002\000\004\015\013\001\002\000\004\014" +
+    "\014\001\002\000\004\004\015\001\002\000\034\002\ufffc" +
+    "\010\ufffc\024\ufffc\027\ufffc\030\ufffc\031\ufffc\032\ufffc\033" +
+    "\ufffc\034\ufffc\035\ufffc\036\ufffc\037\ufffc\042\ufffc\001\002" +
+    "\000\010\002\uffcc\024\uffcc\042\uffcc\001\002\000\004\002" +
+    "\000\001\002\000\004\002\001\001\002\000\004\007\136" +
     "\001\002\000\004\007\023\001\002\000\020\027\026\032" +
     "\040\033\041\034\033\035\035\036\043\037\031\001\002" +
-    "\000\004\004\uffd8\001\002\000\004\004\016\001\002\000" +
+    "\000\004\004\uffd8\001\002\000\004\004\015\001\002\000" +
     "\004\005\132\001\002\000\004\004\uffda\001\002\000\004" +
     "\004\uffd4\001\002\000\004\005\130\001\002\000\004\010" +
     "\127\001\002\000\004\005\117\001\002\000\004\004\uffd9" +
@@ -131,7 +126,7 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
     "\034\033\035\035\036\043\037\031\001\002\000\004\010" +
     "\uffdc\001\002\000\012\027\026\030\141\031\137\032\040" +
     "\001\002\000\004\005\154\001\002\000\004\004\ufff7\001" +
-    "\002\000\004\005\152\001\002\000\004\004\016\001\002" +
+    "\002\000\004\005\152\001\002\000\004\004\015\001\002" +
     "\000\004\004\ufff5\001\002\000\004\004\ufff6\001\002\000" +
     "\004\010\147\001\002\000\004\004\ufff4\001\002\000\010" +
     "\002\ufffb\024\ufffb\042\ufffb\001\002\000\014\010\ufff8\027" +
@@ -146,11 +141,11 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\153\000\010\002\004\004\006\022\007\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\010" +
-    "\002\011\004\006\022\007\001\001\000\010\002\010\004" +
-    "\006\022\007\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\004\003\016\001" +
+    "\000\153\000\010\002\005\004\004\022\007\001\001\000" +
+    "\002\001\001\000\010\002\017\004\004\022\007\001\001" +
+    "\000\002\001\001\000\002\001\001\000\010\002\010\004" +
+    "\004\022\007\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\003\015\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\024\007\031\010" +
     "\024\011\026\014\041\015\033\016\023\017\036\020\035" +
@@ -211,7 +206,7 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
     java_cup.runtime.lr_parser parser,
     java.util.Stack            stack,
     int                        top)
-    throws Exception
+    throws java.lang.Exception
   {
     /* call code in generated class */
     return action_obj.CUP$ParserP1$do_action(act_num, parser, stack, top);
@@ -251,7 +246,7 @@ class CUP$ParserP1$actions {
     java_cup.runtime.lr_parser CUP$ParserP1$parser,
     java.util.Stack            CUP$ParserP1$stack,
     int                        CUP$ParserP1$top)
-    throws Exception
+    throws java.lang.Exception
     {
       /* Symbol object for return from actions */
       java_cup.runtime.Symbol CUP$ParserP1$result;
@@ -260,10 +255,15 @@ class CUP$ParserP1$actions {
       switch (CUP$ParserP1$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // s ::= graph s 
+          case 0: // s ::= chart s 
             {
               Object RESULT =null;
-
+		int chtleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int chtright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		ChartCode cht = (ChartCode)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
+		
+                            Execute.getExecute().addChart(cht);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -286,16 +286,26 @@ class CUP$ParserP1$actions {
           case 2: // s ::= execute s 
             {
               Object RESULT =null;
-
+		int exleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int exright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		String ex = (String)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
+		
+                            Execute.getExecute().addExecuteCall(ex);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // s ::= graph 
+          case 3: // s ::= chart 
             {
               Object RESULT =null;
-
+		int chtleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
+		int chtright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
+		ChartCode cht = (ChartCode)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
+		
+                            Execute.getExecute().addChart(cht);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -304,7 +314,12 @@ class CUP$ParserP1$actions {
           case 4: // s ::= execute 
             {
               Object RESULT =null;
-
+		int exleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
+		int exright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
+		String ex = (String)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
+		
+                            Execute.getExecute().addExecuteCall(ex);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -319,42 +334,32 @@ class CUP$ParserP1$actions {
           return CUP$ParserP1$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // graph ::= DEF BARRAS LBRACE cuerpo_barras RBRACE 
+          case 6: // chart ::= DEF BARRAS LBRACE cuerpo_barras RBRACE 
             {
-              Object RESULT =null;
+              ChartCode RESULT =null;
 		int arrleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
 		int arrright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
 		ArrayList<Attribute> arr = (ArrayList<Attribute>)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		
                             BarChartCode chart = Validate.validateBar(arr);
-                            if(chart != null){
-                                System.out.println(chart);
-                            }
-                            else{
-                                System.out.println("Mamaste");
-                            }
+                            RESULT = chart;
                         
-              CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("graph",2, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-4)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
+              CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("chart",2, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-4)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // graph ::= DEF PIE LBRACE cuerpo_pie RBRACE 
+          case 7: // chart ::= DEF PIE LBRACE cuerpo_pie RBRACE 
             {
-              Object RESULT =null;
+              ChartCode RESULT =null;
 		int arrleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
 		int arrright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
 		ArrayList<Attribute> arr = (ArrayList<Attribute>)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		
                             PieChartCode chart = Validate.validatePie(arr);
-                            if(chart != null){
-                                System.out.println(chart);
-                            }
-                            else{
-                                System.out.println("Mamaste");
-                            }
+                            RESULT = chart;
                         
-              CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("graph",2, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-4)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
+              CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("chart",2, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-4)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
 
@@ -1058,7 +1063,7 @@ class CUP$ParserP1$actions {
     java_cup.runtime.lr_parser CUP$ParserP1$parser,
     java.util.Stack            CUP$ParserP1$stack,
     int                        CUP$ParserP1$top)
-    throws Exception
+    throws java.lang.Exception
     {
               return CUP$ParserP1$do_action_part00000000(
                                CUP$ParserP1$act_num,
