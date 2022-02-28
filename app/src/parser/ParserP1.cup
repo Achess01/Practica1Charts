@@ -1,0 +1,354 @@
+package com.example.practica1.parserLexer.parser;
+
+import com.example.practica1.parserLexer.lexer.LexerP1;
+import com.example.practica1.parserLexer.*;
+import java.util.ArrayList;
+
+parser code {:
+    public ParserP1(LexerP1 lexer){
+        super(lexer);
+    }
+:}
+
+
+terminal SEMICOLON, COLON, COMMA;
+terminal LBRACE, RBRACE;
+terminal LBRACKET, RBRACKET;
+terminal LPAREN, RPAREN;
+terminal String STRING;
+
+terminal PLUS, MINUS, DIVISION, TIMES;
+terminal Double INTEGER, DECIMAL;
+// Graphs definition
+terminal DEF, BARRAS, PIE;
+terminal TITULO, EJEX, EJEY, UNIR;
+terminal ETIQUETAS, VALORES, TIPO, EXTRA, TOTAL;
+terminal String CANTIDAD, PORCENTAJE;
+
+terminal EJECUTAR;
+
+
+non terminal s, fin;
+non terminal ChartCode chart;
+
+non terminal ArrayList<Attribute> cuerpo_barras; 
+non terminal Attribute statement_barras; 
+non terminal ArrayList<Attribute> cuerpo_pie;
+non terminal Attribute statement_pie;
+
+non terminal Attribute<String> titulo;
+non terminal Attribute<ArrayNode<String>> ejex;
+non terminal Attribute<ArrayNode<Operation>> ejey;
+non terminal Attribute<ArrayNode<Operation[]>> unir;
+non terminal Attribute<ArrayNode<String>> etiquetas;
+non terminal Attribute<ArrayNode<Operation>> valores;
+non terminal Attribute<String> tipo;
+non terminal Attribute<Operation> total;
+non terminal Attribute<String> extra;
+non terminal String execute;
+
+non terminal String pie_types;
+
+non terminal ArrayNode<String>array_strings;
+non terminal ArrayNode<String>strings_comma;
+non terminal ArrayNode<Operation> array_operations;
+non terminal ArrayNode<Operation> operations_comma;
+non terminal ArrayNode<Operation[]> tuplas_comma;
+non terminal Operation[] tupla;
+
+non terminal Operation operation;
+non terminal Operation factor;
+non terminal Operation term;
+
+
+
+
+
+
+
+s::= 
+                        chart:cht s
+                        {:
+                            Execute.getExecute().addChart(cht);
+                        :}
+                        |execute:ex s
+                        {:
+                            Execute.getExecute().addExecuteCall(ex);
+                        :}
+                        | chart:cht
+                        {:
+                            Execute.getExecute().addChart(cht);
+                        :}
+                        | execute:ex
+                        {:
+                            Execute.getExecute().addExecuteCall(ex);
+                        :}
+                        ;
+
+fin::= 
+                        SEMICOLON
+                        ;
+
+chart::= 
+                        DEF BARRAS LBRACE cuerpo_barras:arr RBRACE
+                        {:
+                            BarChartCode chart = Validate.validateBar(arr);
+                            RESULT = chart;
+                        :}
+                        |DEF PIE LBRACE cuerpo_pie:arr RBRACE
+                        {:
+                            PieChartCode chart = Validate.validatePie(arr);
+                            RESULT = chart;
+                        :}
+                        ;
+
+cuerpo_barras::= 
+                        statement_barras:att fin cuerpo_barras:arr
+                        {:
+                            arr.add(att);
+                            RESULT = arr;
+                        :}
+                        |statement_barras:att fin
+                        {:
+                            ArrayList<Attribute> attributes = new ArrayList<>();
+                            attributes.add(att);
+                            RESULT = attributes;
+                        :}
+                        ;
+statement_barras::= 
+                        titulo:ti  
+                        {:
+                            RESULT = ti;
+                        :}
+                        |ejex:ex  
+                        {:
+                            RESULT = ex;
+                        :}
+                        |ejey :ey 
+                        {:
+                            RESULT = ey;
+                        :}
+                        |unir:u  
+                        {:
+                            RESULT = u;
+                        :}
+                        ;
+
+titulo::= 
+                        TITULO COLON STRING:st
+                        {:
+                          st = st.replaceAll("\"", "");
+                          Attribute<String> att = new Attribute<>(st, Attribute.TITULO, stleft);
+                          RESULT = att;
+                        :}
+                        ;
+ejex::= 
+                        EJEX COLON array_strings:arr
+                        {:
+                            Attribute<ArrayNode<String>> att = new Attribute<>(arr, Attribute.EJEX, arrleft);
+                            RESULT = att;
+                        :}
+                        ;
+
+array_strings::=
+                        LBRACKET strings_comma:arr RBRACKET
+                        {:
+                            RESULT = arr;
+                        :}
+                        ;
+strings_comma::= 
+                        STRING:st COMMA strings_comma:nexts
+                        {:
+                            st = st.replaceAll("\"", "");
+                            ArrayNode<String> node = new ArrayNode<String>(st);
+                            node.setNext(nexts);
+                            RESULT = node;
+                        :}
+                        |STRING:st
+                        {:
+                            st = st.replaceAll("\"", "");
+                            ArrayNode<String> node = new ArrayNode<String>(st);                            
+                            RESULT = node;
+                        :}
+                        ;
+ejey::=
+                        EJEY COLON array_operations:arr
+                        {: 
+                            Attribute<ArrayNode<Operation>> att = new Attribute<>(arr, Attribute.EJEY, arrleft);
+                            RESULT = att;
+                        :}                        
+                        ;
+
+array_operations::=         
+                        LBRACKET operations_comma:arr RBRACKET
+                        {:
+                            RESULT = arr;
+                        :}
+                        ;
+operations_comma::=
+                        operation:o COMMA operations_comma:nexts
+                        {: 
+                            ArrayNode<Operation> node = new ArrayNode<Operation>(o);
+                            node.setNext(nexts);
+                            RESULT = node;
+                        :}
+                        | operation: o
+                        {: 
+                            ArrayNode<Operation> node = new ArrayNode<Operation>(o);
+                            RESULT = node;
+                        :}                        
+                        ;                        
+unir::=
+                        UNIR COLON LBRACKET tuplas_comma:tuplas RBRACKET
+                        {:
+                           Attribute<ArrayNode<Operation[]>> att = new Attribute<>(tuplas, Attribute.UNIR, tuplasleft);
+                           RESULT = att;                           
+                        :}
+                        ;
+tuplas_comma::= 
+                        tupla:tp COMMA tuplas_comma:prevs
+                        {:
+                            ArrayNode<Operation[]> node = new ArrayNode<Operation[]>(tp);
+                            node.setNext(prevs);
+                            RESULT = node;
+                        :}
+                        | tupla:tp
+                        {:
+                            ArrayNode<Operation[]> node = new ArrayNode<Operation[]>(tp);                            
+                            RESULT = node;
+                        :}
+                        ;
+tupla::=
+                        LBRACE operation:x COMMA operation:y RBRACE
+                        {: 
+                            Operation[] array = new Operation[2];
+                            array[0] = x;
+                            array[1] = y;
+                            RESULT = array;
+                        :}
+                        ;
+                        
+operation::=
+                        operation:o PLUS term:t
+                        {: RESULT=new Operation("+", o, t);:}
+                        |operation:o MINUS term:t
+                        {: RESULT=new Operation("-", o, t);:}
+                        |term:t 
+                        {:RESULT=t;:}
+                        ;
+
+term::=
+                        term:t TIMES factor:f
+                        {: RESULT=new Operation("*", t, f);:}
+                        |term:t DIVISION factor:f
+                        {: RESULT=new Operation("/", t, f);:}
+                        |factor:f 
+                        {: RESULT=f;:}
+                        ;
+factor::=
+                        INTEGER:val 
+                        {: RESULT=new Operation("n", val);:}
+                        |DECIMAL:val
+                        {: RESULT=new Operation("n", val);:}
+                        |LPAREN operation:op RPAREN
+                        {: RESULT=op;:}
+                        | MINUS factor:op
+                        {: RESULT=new Operation("minus", op, null);:}
+                        ;
+
+cuerpo_pie::=
+                        statement_pie:att fin cuerpo_pie:arr
+                        {:                           
+                            arr.add(att);
+                            RESULT = arr;
+                        :}
+                        | statement_pie:att fin
+                        {:
+                            ArrayList<Attribute> attributes = new ArrayList<>();
+                            attributes.add(att);
+                            RESULT = attributes;
+                        :}
+                        ;
+statement_pie::=        
+                        titulo:ti
+                        {:
+                            RESULT = ti;
+                        :}
+                        |etiquetas:et
+                        {:
+                            RESULT = et;
+                        :}
+                        |valores:va
+                        {:
+                            RESULT = va;
+                        :}
+                        |unir:u
+                        {:
+                            RESULT = u;
+                        :}
+                        |tipo:tp
+                        {:
+                            RESULT = tp;
+                        :}
+                        |total:to
+                        {:
+                            RESULT = to;
+                        :} 
+                        |extra:ex 
+                        {:
+                            RESULT = ex;
+                        :}
+                        ;                        
+etiquetas::=
+                        ETIQUETAS COLON array_strings:arr
+                        {:
+                            Attribute<ArrayNode<String>> att = new Attribute<>(arr, Attribute.ETIQUETAS, arrleft);
+                            RESULT = att;
+                        :}
+                        ;
+valores::=
+                        VALORES COLON array_operations:arr
+                        {:
+                            Attribute<ArrayNode<Operation>> att = new Attribute<>(arr, Attribute.VALORES, arrleft);
+                            RESULT = att;
+                        :}
+                        ;
+tipo::=
+                        TIPO COLON pie_types:st
+                        {:
+                            Attribute<String> att = new Attribute<>(st, Attribute.TIPO, stleft);
+                            RESULT = att;
+                        :}
+                        ;
+pie_types::=
+                        CANTIDAD:st
+                        {:
+                            RESULT = st;
+                        :}
+                        |PORCENTAJE:st
+                        {:
+                            RESULT = st;
+                        :}
+                        ;
+total::=
+                        TOTAL COLON operation:op
+                        {:
+                            Attribute<Operation> att = new Attribute<>(op, Attribute.TOTAL, opleft);
+                            RESULT = att;
+                        :}
+                        ;
+extra::=
+                        EXTRA COLON STRING:st
+                        {:
+                            st = st.replaceAll("\"", "");
+                            Attribute<String> att = new Attribute<>(st, Attribute.EXTRA, stleft);
+                            RESULT = att;
+                        :}
+                        ;
+execute::=
+                        EJECUTAR LPAREN STRING:st RPAREN fin
+                        {:
+                            st = st.replaceAll("\"", "");                            
+                            RESULT = st;
+                        :}
+                        ;
