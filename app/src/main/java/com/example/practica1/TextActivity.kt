@@ -62,6 +62,8 @@ class TextActivity : AppCompatActivity() {
                 else{
                     val toast = Toast.makeText(this, "Con errores", Toast.LENGTH_SHORT);
                     toast.show();
+                    val intent = Intent(this, ErrorsActivity::class.java).apply {}
+                    startActivity(intent)
                 }
             }
         }

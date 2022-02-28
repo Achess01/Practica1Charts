@@ -264,7 +264,7 @@ class CUP$ParserP1$actions {
 		int chtright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
 		ChartCode cht = (ChartCode)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		
-                            Execute.getExecute().addChart(cht);
+                            if(cht != null) Execute.getExecute().addChart(cht);
                         
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
@@ -292,7 +292,7 @@ class CUP$ParserP1$actions {
 		int exright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
 		String ex = (String)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		
-                            Execute.getExecute().addExecuteCall(ex);
+                            if(ex != null) Execute.getExecute().addExecuteCall(ex);
                         
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
@@ -306,7 +306,7 @@ class CUP$ParserP1$actions {
 		int chtright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		ChartCode cht = (ChartCode)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
 		
-                            Execute.getExecute().addChart(cht);
+                            if(cht != null) Execute.getExecute().addChart(cht);
                         
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
@@ -320,7 +320,7 @@ class CUP$ParserP1$actions {
 		int exright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		String ex = (String)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
 		
-                            Execute.getExecute().addExecuteCall(ex);
+                            if(ex != null) Execute.getExecute().addExecuteCall(ex);
                         
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("s",0, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }

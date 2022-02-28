@@ -36,16 +36,7 @@ public class Execute {
         chooseOnes = null;
     }                
 
-    public ArrayList<String> getChartsNames() {
-        return chartsNames;
-    }
-
-    public HashMap<String, ChartCode> getCharts() {
-        return charts;
-    }
-    
     public void addExecuteCall(String name){
-        System.out.println(name);
         chartsNames.add(name);
     }
     
@@ -69,7 +60,6 @@ public class Execute {
     }
 
     public boolean readyToShow(){
-        System.out.println(chartsNames.size());
         return chartsNames.size() > 0;
     }
 }

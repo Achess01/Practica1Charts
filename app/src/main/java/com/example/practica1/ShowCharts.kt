@@ -69,6 +69,7 @@ class ShowCharts : AppCompatActivity() {
         chart.data = getPieData(values, labels)
         chart.legend.isEnabled = false
         chart.invalidate()
+        chart.setBackgroundColor(Color.GRAY)
         return chart;
     }
 

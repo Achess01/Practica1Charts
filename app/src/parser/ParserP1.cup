@@ -71,19 +71,19 @@ non terminal Operation term;
 s::= 
                         chart:cht s
                         {:
-                            Execute.getExecute().addChart(cht);
+                            if(cht != null) Execute.getExecute().addChart(cht);
                         :}
                         |execute:ex s
                         {:
-                            Execute.getExecute().addExecuteCall(ex);
+                            if(ex != null) Execute.getExecute().addExecuteCall(ex);
                         :}
                         | chart:cht
                         {:
-                            Execute.getExecute().addChart(cht);
+                            if(cht != null) Execute.getExecute().addChart(cht);
                         :}
                         | execute:ex
                         {:
-                            Execute.getExecute().addExecuteCall(ex);
+                            if(ex != null) Execute.getExecute().addExecuteCall(ex);
                         :}
                         ;
 

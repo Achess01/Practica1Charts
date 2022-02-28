@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Sintax and lex -->
+    <string-array name="header_errors">
+        <item>Lexema</item>
+        <item>Linea</item>
+        <item>Columna</item>
+        <item>Tipo</item>
+        <item>Descripcion</item>
+    </string-array>
+    
+    <!-- semantic -->
+    <string-array name="header_sem">
+        <item>Linea</item>
+        <item>Descripcion</item>
+    </string-array>
+
+</resources>

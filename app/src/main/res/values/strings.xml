@@ -8,4 +8,7 @@
     <string name="scroll">Scrollable view</string>
     <string name="Info">Más información</string>
     <string name="empty">Del</string>
+    <string name="report_errors">Errores</string>
+    <string name="report_ls">Sintácticos y léxicos</string>
+    <string name="report_sem">Semánticos</string>
 </resources>

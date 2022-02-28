@@ -35,7 +35,7 @@ public class Validate {
            switch(type){
                case Attribute.TITULO:
                     if(titulo != null){
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX); 
+                        Error(attr.getLine(), 0, "Atributo 'titulo' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;
                     }
                     else{
@@ -44,7 +44,7 @@ public class Validate {
                     break;
                case Attribute.EJEX:
                    if( ejex != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'ejex' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        ejex = getArrayStrings(attr);
@@ -52,7 +52,7 @@ public class Validate {
                    break;
                case Attribute.EJEY:
                    if( ejey != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'ejey' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        ejey = getArrayInts(attr);
@@ -61,7 +61,7 @@ public class Validate {
                    break;
                 case Attribute.UNIR:
                    if( coords != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'unir' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        coords = getUnions(attr);
@@ -98,7 +98,7 @@ public class Validate {
            switch(type){
                case Attribute.TITULO:
                     if(titulo != null){
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX); 
+                        Error(attr.getLine(), 0, "Atributo 'titulo' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;
                     }
                     else{
@@ -107,7 +107,7 @@ public class Validate {
                     break;
                case Attribute.ETIQUETAS:
                    if( etiquetas != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'etiquetas' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        etiquetas = getArrayStrings(attr);
@@ -115,7 +115,7 @@ public class Validate {
                    break;
                case Attribute.VALORES:
                    if( valores != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'valores' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        valores = getArrayInts(attr);
@@ -124,7 +124,7 @@ public class Validate {
                    break;
                 case Attribute.UNIR:
                    if( unions != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'unir' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        unions = getUnions(attr);
@@ -133,7 +133,7 @@ public class Validate {
                    break;
                 case Attribute.EXTRA:
                    if( extra != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'extra' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        extra = (String) attr.getAttribute();                       
@@ -141,7 +141,7 @@ public class Validate {
                    break;
                 case Attribute.TIPO:
                    if( tipo != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'tipo' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        tipo = (String) attr.getAttribute();
@@ -150,7 +150,7 @@ public class Validate {
                    break;
                 case Attribute.TOTAL:
                    if( total != null){                       
-                        Error(attr.getLine(), 0, "Atributo único ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
+                        Error(attr.getLine(), 0, "Atributo 'total' ya definido", Attribute.TYPES[attr.getType() - 1], Errors.SINTAX);
                         error = true;                    
                    }else{
                        total = getValue(attr);
@@ -173,6 +173,10 @@ public class Validate {
            error = true;
        }else if(!porcentaje && total != null){
            chart = new PieChartCode(titulo, etiquetas, valores, unions, tipo,total, extra);
+       }
+       if(extra == null){
+           error = true;
+           Error(attributes.get(0).getLine(), 0, "Atributo 'extra' no está definido", Attribute.TYPES[attributes.get(0).getType() - 1], Errors.SINTAX);
        }
        
        if (error) return null;       
