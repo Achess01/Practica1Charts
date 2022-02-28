@@ -25,13 +25,26 @@
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
         android:layout_marginBottom="16dp"
         android:text="@string/compile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonDel"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <Button
+        android:id="@+id/buttonDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="17dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:foregroundTint="@color/design_default_color_error"
+        android:text="@string/empty"
+        app:layout_constraintEnd_toStartOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 </androidx.constraintlayout.widget.ConstraintLayout>

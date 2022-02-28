@@ -46,7 +46,6 @@ public class PieChartCode extends ChartCode{
             values.set(i, percent);
             extr -= percent;
         }
-        System.out.println(values);
         if(extr > 0){
             extraLabel = extra;
             extraValue = extr.floatValue();

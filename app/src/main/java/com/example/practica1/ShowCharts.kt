@@ -96,7 +96,7 @@ class ShowCharts : AppCompatActivity() {
 
     private fun axisX(axis: XAxis, labels: ArrayList<String>){
         axis.isGranularityEnabled = true
-        axis.position = XAxis.XAxisPosition.BOTTOM_INSIDE;
+        axis.position = XAxis.XAxisPosition.TOP_INSIDE;
         axis.valueFormatter = IndexAxisValueFormatter(labels);
         axis.textSize = 15f
     }

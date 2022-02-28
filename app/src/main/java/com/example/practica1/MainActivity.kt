@@ -25,14 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonCharts = findViewById<Button>(R.id.button3)
         buttonCharts.setOnClickListener {
-            if(!Errors.getErrors().withErrors() && Execute.getExecute().readyToShow()){
-                val intent = Intent(this, ShowCharts::class.java).apply {}
-                startActivity(intent)
-            }
-            else{
-                val toast = Toast.makeText(this, "No hay gráficas para mostrar", Toast.LENGTH_SHORT);
-                toast.show();
-            }
+
         }
 
     }
