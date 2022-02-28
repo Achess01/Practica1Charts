@@ -4,4 +4,6 @@
     <string name="seeGraphs">Ver graficas</string>
     <string name="textPreview">Ingrese el texto</string>
     <string name="compile">Compilar</string>
+    <string name="reports">Ver reportes</string>
+    <string name="scroll">Scrollable view</string>
 </resources>

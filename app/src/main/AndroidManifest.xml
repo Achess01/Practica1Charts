@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica1">
         <activity
+            android:name=".ShowCharts"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
             android:name=".TextActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
