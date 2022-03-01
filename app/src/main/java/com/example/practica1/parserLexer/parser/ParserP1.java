@@ -9,7 +9,10 @@ import com.example.practica1.parserLexer.lexer.LexerP1;
 import com.example.practica1.parserLexer.chartCode.*;
 import com.example.practica1.parserLexer.attributes.*;
 import com.example.practica1.parserLexer.*;
+import com.example.practica1.parserLexer.Errors.*;
+import java_cup.runtime.Symbol;
 import java.util.ArrayList;
+import java.util.List;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -59,15 +62,15 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\153\000\006\024\004\042\007\001\002\000\006\025" +
-    "\021\026\022\001\002\000\010\002\ufffe\024\004\042\007" +
+    "\000\153\000\006\024\004\043\007\001\002\000\006\025" +
+    "\021\026\022\001\002\000\010\002\ufffe\024\004\043\007" +
     "\001\002\000\004\002\017\001\002\000\004\013\012\001" +
-    "\002\000\010\002\ufffd\024\004\042\007\001\002\000\004" +
+    "\002\000\010\002\ufffd\024\004\043\007\001\002\000\004" +
     "\002\uffff\001\002\000\004\015\013\001\002\000\004\014" +
     "\014\001\002\000\004\004\015\001\002\000\034\002\ufffc" +
     "\010\ufffc\024\ufffc\027\ufffc\030\ufffc\031\ufffc\032\ufffc\033" +
-    "\ufffc\034\ufffc\035\ufffc\036\ufffc\037\ufffc\042\ufffc\001\002" +
-    "\000\010\002\uffcc\024\uffcc\042\uffcc\001\002\000\004\002" +
+    "\ufffc\034\ufffc\035\ufffc\036\ufffc\037\ufffc\043\ufffc\001\002" +
+    "\000\010\002\uffcc\024\uffcc\043\uffcc\001\002\000\004\002" +
     "\000\001\002\000\004\002\001\001\002\000\004\007\136" +
     "\001\002\000\004\007\023\001\002\000\020\027\026\032" +
     "\040\033\041\034\033\035\035\036\043\037\031\001\002" +
@@ -121,7 +124,7 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
     "\uffeb\016\077\017\100\001\002\000\004\012\124\001\002" +
     "\000\004\004\uffed\001\002\000\012\013\073\017\072\022" +
     "\066\023\074\001\002\000\004\012\uffec\001\002\000\010" +
-    "\002\ufffa\024\ufffa\042\ufffa\001\002\000\012\013\073\017" +
+    "\002\ufffa\024\ufffa\043\ufffa\001\002\000\012\013\073\017" +
     "\072\022\066\023\074\001\002\000\010\004\uffce\016\077" +
     "\017\100\001\002\000\004\015\133\001\002\000\004\004" +
     "\ufff3\001\002\000\022\010\uffdb\027\026\032\040\033\041" +
@@ -131,7 +134,7 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
     "\002\000\004\005\152\001\002\000\004\004\015\001\002" +
     "\000\004\004\ufff5\001\002\000\004\004\ufff6\001\002\000" +
     "\004\010\147\001\002\000\004\004\ufff4\001\002\000\010" +
-    "\002\ufffb\024\ufffb\042\ufffb\001\002\000\014\010\ufff8\027" +
+    "\002\ufffb\024\ufffb\043\ufffb\001\002\000\014\010\ufff8\027" +
     "\026\030\141\031\137\032\040\001\002\000\004\010\ufff9" +
     "\001\002\000\004\011\047\001\002\000\004\004\ufff2\001" +
     "\002\000\004\011\121\001\002\000\004\004\uffee\001\002" +
@@ -229,6 +232,29 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
 
     public ParserP1(LexerP1 lexer){
         super(lexer);
+    }
+
+
+    public void syntax_error(Symbol cur_token) {		
+		List<Integer> tokens = expected_token_ids();
+        int line = cur_token.left;
+        int column = cur_token.right;
+        String lexeme = cur_token.value.toString();
+		int type = Errors.SINTAX;
+        String des = "Se esperaba: ";
+		for(Integer i : tokens) {			
+			des += symbl_name_from_id(i) +",";
+		}
+        Errors.getErrors().addLS(line, column, des, lexeme, type);
+	}
+
+    public void report_fatal_error(String message, Object info) {
+		System.out.println("message: " + message);
+		System.out.println("info: " + info);
+	}
+
+    protected int error_sync_size() {
+        return 1;
     }
 
 

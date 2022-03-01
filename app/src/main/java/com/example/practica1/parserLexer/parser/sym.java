@@ -16,7 +16,8 @@ public class sym {
   public static final int DECIMAL = 17;
   public static final int DIVISION = 14;
   public static final int ETIQUETAS = 25;
-  public static final int EJECUTAR = 32;
+  public static final int ERROR = 32;
+  public static final int EJECUTAR = 33;
   public static final int LBRACKET = 7;
   public static final int LPAREN = 9;
   public static final int COLON = 3;
@@ -74,6 +75,7 @@ public class sym {
   "TOTAL",
   "CANTIDAD",
   "PORCENTAJE",
+  "ERROR",
   "EJECUTAR"
   };
 }

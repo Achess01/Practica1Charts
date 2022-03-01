@@ -6,6 +6,7 @@ package com.example.practica1.parserLexer.lexer;
 
 import java_cup.runtime.*;
 import com.example.practica1.parserLexer.parser.sym;
+import com.example.practica1.parserLexer.Errors.*;
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
@@ -746,8 +747,8 @@ public class LexerP1 implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { throw new RuntimeException("Caracter inesperado \""+yytext()+
-                                "\" ln:"+yyline+", col:"+yycolumn);
+            { //Errors.getErrors().addLS(yyline+1, yycolumn+1, "Caracter inesperado", yytext(), Errors.LEXICAL);
+        return new Symbol(sym.ERROR, yyline+1, yycolumn+1);
             }
             // fall through
           case 34: break;
@@ -757,37 +758,37 @@ public class LexerP1 implements java_cup.runtime.Scanner {
             // fall through
           case 35: break;
           case 3:
-            { return new Symbol(sym.LPAREN , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.LPAREN , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 36: break;
           case 4:
-            { return new Symbol(sym.RPAREN , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.RPAREN , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 37: break;
           case 5:
-            { return new Symbol(sym.TIMES , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.TIMES , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 38: break;
           case 6:
-            { return new Symbol(sym.PLUS , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.PLUS , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 39: break;
           case 7:
-            { return new Symbol(sym.COMMA , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.COMMA , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 40: break;
           case 8:
-            { return new Symbol(sym.MINUS , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.MINUS , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 41: break;
           case 9:
-            { return new Symbol(sym.DIVISION , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.DIVISION , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 42: break;
@@ -797,32 +798,32 @@ public class LexerP1 implements java_cup.runtime.Scanner {
             // fall through
           case 43: break;
           case 11:
-            { return new Symbol(sym.COLON , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.COLON , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 44: break;
           case 12:
-            { return new Symbol(sym.SEMICOLON , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.SEMICOLON , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 45: break;
           case 13:
-            { return new Symbol(sym.LBRACKET , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.LBRACKET , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 46: break;
           case 14:
-            { return new Symbol(sym.RBRACKET , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.RBRACKET , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 47: break;
           case 15:
-            { return new Symbol(sym.LBRACE , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.LBRACE , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 48: break;
           case 16:
-            { return new Symbol(sym.RBRACE , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.RBRACE , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 49: break;
@@ -837,57 +838,57 @@ public class LexerP1 implements java_cup.runtime.Scanner {
             // fall through
           case 51: break;
           case 19:
-            { return new Symbol(sym.DEF , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.DEF , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 52: break;
           case 20:
-            { return new Symbol(sym.PIE , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.PIE , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 53: break;
           case 21:
-            { return new Symbol(sym.EJEX , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.EJEX , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 54: break;
           case 22:
-            { return new Symbol(sym.EJEY , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.EJEY , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 55: break;
           case 23:
-            { return new Symbol(sym.TIPO , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.TIPO , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 56: break;
           case 24:
-            { return new Symbol(sym.UNIR , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.UNIR , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 57: break;
           case 25:
-            { return new Symbol(sym.EXTRA , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.EXTRA , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 58: break;
           case 26:
-            { return new Symbol(sym.TOTAL , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.TOTAL , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 59: break;
           case 27:
-            { return new Symbol(sym.BARRAS , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.BARRAS , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 60: break;
           case 28:
-            { return new Symbol(sym.TITULO , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.TITULO , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 61: break;
           case 29:
-            { return new Symbol(sym.VALORES , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.VALORES , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 62: break;
@@ -897,12 +898,12 @@ public class LexerP1 implements java_cup.runtime.Scanner {
             // fall through
           case 63: break;
           case 31:
-            { return new Symbol(sym.EJECUTAR , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.EJECUTAR , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 64: break;
           case 32:
-            { return new Symbol(sym.ETIQUETAS , yyline + 1, yycolumn + 1);
+            { return new Symbol(sym.ETIQUETAS , yyline + 1, yycolumn + 1, yytext());
             }
             // fall through
           case 65: break;

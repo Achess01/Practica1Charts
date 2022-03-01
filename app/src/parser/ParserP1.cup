@@ -4,11 +4,37 @@ import com.example.practica1.parserLexer.lexer.LexerP1;
 import com.example.practica1.parserLexer.chartCode.*;
 import com.example.practica1.parserLexer.attributes.*;
 import com.example.practica1.parserLexer.*;
+import com.example.practica1.parserLexer.Errors.*;
+import java_cup.runtime.Symbol;
 import java.util.ArrayList;
+import java.util.List;
 
 parser code {:
     public ParserP1(LexerP1 lexer){
         super(lexer);
+    }
+
+
+    public void syntax_error(Symbol cur_token) {		
+		List<Integer> tokens = expected_token_ids();
+        int line = cur_token.left;
+        int column = cur_token.right;
+        String lexeme = cur_token.value.toString();
+		int type = Errors.SINTAX;
+        String des = "Se esperaba: ";
+		for(Integer i : tokens) {			
+			des += symbl_name_from_id(i) +",";
+		}
+        Errors.getErrors().addLS(line, column, des, lexeme, type);
+	}
+
+    public void report_fatal_error(String message, Object info) {
+		System.out.println("message: " + message);
+		System.out.println("info: " + info);
+	}
+
+    protected int error_sync_size() {
+        return 1;
     }
 :}
 
@@ -26,6 +52,7 @@ terminal DEF, BARRAS, PIE;
 terminal TITULO, EJEX, EJEY, UNIR;
 terminal ETIQUETAS, VALORES, TIPO, EXTRA, TOTAL;
 terminal String CANTIDAD, PORCENTAJE;
+terminal ERROR;
 
 terminal EJECUTAR;
 
@@ -84,11 +111,11 @@ s::=
                         | execute:ex
                         {:
                             if(ex != null) Execute.getExecute().addExecuteCall(ex);
-                        :}
+                        :}                        
                         ;
 
 fin::= 
-                        SEMICOLON
+                        SEMICOLON                        
                         ;
 
 chart::= 
@@ -101,7 +128,7 @@ chart::=
                         {:
                             PieChartCode chart = Validate.validatePie(arr);
                             RESULT = chart;
-                        :}
+                        :}                                               
                         ;
 
 cuerpo_barras::= 
@@ -115,7 +142,7 @@ cuerpo_barras::=
                             ArrayList<Attribute> attributes = new ArrayList<>();
                             attributes.add(att);
                             RESULT = attributes;
-                        :}
+                        :}                                          
                         ;
 statement_barras::= 
                         titulo:ti  
@@ -133,7 +160,7 @@ statement_barras::=
                         |unir:u  
                         {:
                             RESULT = u;
-                        :}
+                        :}                        
                         ;
 
 titulo::= 
@@ -284,7 +311,7 @@ cuerpo_pie::=
                             ArrayList<Attribute> attributes = new ArrayList<>();
                             attributes.add(att);
                             RESULT = attributes;
-                        :}
+                        :}                        
                         ;
 statement_pie::=        
                         titulo:ti
@@ -314,7 +341,7 @@ statement_pie::=
                         |extra:ex 
                         {:
                             RESULT = ex;
-                        :}
+                        :}                        
                         ;                        
 etiquetas::=
                         ETIQUETAS COLON array_strings:arr
