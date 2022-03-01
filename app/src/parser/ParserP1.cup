@@ -138,7 +138,9 @@ chart::=
                         {:
                             PieChartCode chart = Validate.validatePie(arr);
                             RESULT = chart;
-                        :}                                               
+                        :}
+                        |DEF BARRAS LBRACE error RBRACE
+                        |DEF PIE LBRACE error RBRACE
                         ;
 
 cuerpo_barras::= 
@@ -152,7 +154,9 @@ cuerpo_barras::=
                             ArrayList<Attribute> attributes = new ArrayList<>();
                             attributes.add(att);
                             RESULT = attributes;
-                        :}                                          
+                        :}
+                        |statement_barras error cuerpo_barras
+                        |statement_barras error                                      
                         ;
 statement_barras::= 
                         titulo:ti  
@@ -170,7 +174,7 @@ statement_barras::=
                         |unir:u  
                         {:
                             RESULT = u;
-                        :}                        
+                        :}                                              
                         ;
 
 titulo::= 
@@ -180,6 +184,7 @@ titulo::=
                           Attribute<String> att = new Attribute<>(st, Attribute.TITULO, stleft);
                           RESULT = att;
                         :}
+                        | TITULO COLON error
                         ;
 ejex::= 
                         EJEX COLON array_strings:arr
@@ -215,7 +220,8 @@ ejey::=
                         {: 
                             Attribute<ArrayNode<Operation>> att = new Attribute<>(arr, Attribute.EJEY, arrleft);
                             RESULT = att;
-                        :}                        
+                        :}
+                        | EJEY COLON error      
                         ;
 
 array_operations::=         
@@ -243,6 +249,7 @@ unir::=
                            Attribute<ArrayNode<Operation[]>> att = new Attribute<>(tuplas, Attribute.UNIR, tuplasleft);
                            RESULT = att;                           
                         :}
+                        | UNIR COLON error
                         ;
 tuplas_comma::= 
                         tupla:tp COMMA tuplas_comma:prevs
@@ -256,6 +263,7 @@ tuplas_comma::=
                             ArrayNode<Operation[]> node = new ArrayNode<Operation[]>(tp);                            
                             RESULT = node;
                         :}
+                        | tupla error tuplas_comma
                         ;
 tupla::=
                         LBRACE operation:x COMMA operation:y RBRACE
@@ -264,7 +272,7 @@ tupla::=
                             array[0] = x;
                             array[1] = y;
                             RESULT = array;
-                        :}
+                        :}                        
                         ;
                         
 operation::=
@@ -321,7 +329,9 @@ cuerpo_pie::=
                             ArrayList<Attribute> attributes = new ArrayList<>();
                             attributes.add(att);
                             RESULT = attributes;
-                        :}                        
+                        :}
+                        | statement_pie error cuerpo_pie
+                        | statement_pie error  
                         ;
 statement_pie::=        
                         titulo:ti
@@ -359,6 +369,7 @@ etiquetas::=
                             Attribute<ArrayNode<String>> att = new Attribute<>(arr, Attribute.ETIQUETAS, arrleft);
                             RESULT = att;
                         :}
+                        | ETIQUETAS COLON error
                         ;
 valores::=
                         VALORES COLON array_operations:arr
@@ -366,6 +377,7 @@ valores::=
                             Attribute<ArrayNode<Operation>> att = new Attribute<>(arr, Attribute.VALORES, arrleft);
                             RESULT = att;
                         :}
+                        | VALORES COLON error
                         ;
 tipo::=
                         TIPO COLON pie_types:st
@@ -373,6 +385,7 @@ tipo::=
                             Attribute<String> att = new Attribute<>(st, Attribute.TIPO, stleft);
                             RESULT = att;
                         :}
+                        | TIPO COLON error
                         ;
 pie_types::=
                         CANTIDAD:st
@@ -390,6 +403,7 @@ total::=
                             Attribute<Operation> att = new Attribute<>(op, Attribute.TOTAL, opleft);
                             RESULT = att;
                         :}
+                        | TOTAL COLON error
                         ;
 extra::=
                         EXTRA COLON STRING:st
@@ -398,6 +412,7 @@ extra::=
                             Attribute<String> att = new Attribute<>(st, Attribute.EXTRA, stleft);
                             RESULT = att;
                         :}
+                        | EXTRA COLON error
                         ;
 execute::=
                         EJECUTAR LPAREN STRING:st RPAREN fin
@@ -405,4 +420,6 @@ execute::=
                             st = st.replaceAll("\"", "");                            
                             RESULT = st;
                         :}
+                        |EJECUTAR LPAREN error RPAREN fin
+                        |EJECUTAR LPAREN STRING RPAREN error
                         ;
