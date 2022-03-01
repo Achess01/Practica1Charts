@@ -16,8 +16,6 @@ public abstract class ChartCode {
     protected ArrayList<Integer[]> union;
     protected ArrayList<String> x_labels;
     protected ArrayList<Float> y_values;
-    protected String extraLabel;
-    protected Float extraValue;
 
     public ChartCode(String title, ArrayList<Double> values, ArrayList<String> labels, ArrayList<Integer[]> coords) {
         this.title = title;
@@ -56,10 +54,6 @@ public abstract class ChartCode {
                     Float y_val = values.get(y).floatValue();
                     y_values.add(y_val);
                 }
-            }
-            if(extraLabel != null && extraValue != null){
-                x_labels.add(extraLabel);
-                y_values.add(extraValue);
             }
         }
     }

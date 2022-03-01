@@ -12,6 +12,7 @@ import com.example.practica1.parserLexer.*;
 import com.example.practica1.parserLexer.Errors.*;
 import java_cup.runtime.Symbol;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java_cup.runtime.XMLElement;
 
@@ -235,16 +236,25 @@ public class ParserP1 extends java_cup.runtime.lr_parser {
     }
 
 
-    public void syntax_error(Symbol cur_token) {		
+    public void syntax_error(Symbol cur_token) {
+        HashMap<String, String> symbolNames = Validate.getSymbolNames();
 		List<Integer> tokens = expected_token_ids();
         int line = cur_token.left;
         int column = cur_token.right;
         String lexeme = cur_token.value.toString();
 		int type = Errors.SINTAX;
         String des = "Se esperaba: ";
-		for(Integer i : tokens) {			
-			des += symbl_name_from_id(i) +",";
+		for(Integer i : tokens) {	
+            String fromId = symbl_name_from_id(i);
+            String symbolName = symbolNames.get(fromId);
+            if(symbolName != null){
+                des += "'"+symbolName+ "' o ";
+            }
+            else{
+                des += fromId +" o ";
+            }			
 		}
+        des = des.substring(0, des.length() - 3);
         Errors.getErrors().addLS(line, column, des, lexeme, type);
 	}
 

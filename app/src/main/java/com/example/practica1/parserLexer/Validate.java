@@ -11,12 +11,34 @@ import com.example.practica1.parserLexer.chartCode.BarChartCode;
 import com.example.practica1.parserLexer.chartCode.PieChartCode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author achess
  */
 public class Validate {
+    private static HashMap<String, String> SYMBOLNAMES;
+
+    public static HashMap<String, String> getSymbolNames(){
+        if(SYMBOLNAMES == null) {
+            SYMBOLNAMES = new HashMap<>();
+            SYMBOLNAMES.put("SEMICOLON", ";");
+            SYMBOLNAMES.put("COLON", ":");
+            SYMBOLNAMES.put("COMMA", ",");
+            SYMBOLNAMES.put("LBRACE", "{");
+            SYMBOLNAMES.put("RBRACE", "{");
+            SYMBOLNAMES.put("LBRACKET", "[");
+            SYMBOLNAMES.put("RBRACKET", "]");
+            SYMBOLNAMES.put("LPAREN", "(");
+            SYMBOLNAMES.put("RPAREN", ")");
+            SYMBOLNAMES.put("PLUS", "+");
+            SYMBOLNAMES.put("MINUS", "-");
+            SYMBOLNAMES.put("DIVISION", "/");
+            SYMBOLNAMES.put("TIMES", "*");
+        }
+        return SYMBOLNAMES;
+    }
     
    public static BarChartCode validateBar(ArrayList<Attribute> attributes){
        boolean error = false;

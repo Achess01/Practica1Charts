@@ -39,16 +39,17 @@ public class PieChartCode extends ChartCode{
     }
 
     private void getPercents(){
+        makeMPAndroidCharts();
         Double extr = 100.0;
-        for(int i = 0; i < values.size(); i++){
-            Double val = values.get(i);
+        for(int i = 0; i < y_values.size(); i++){
+            Float val = y_values.get(i);
             Double percent = (val*100)/total;
-            values.set(i, percent);
+            y_values.set(i, percent.floatValue());
             extr -= percent;
         }
         if(extr > 0){
-            extraLabel = extra;
-            extraValue = extr.floatValue();
+            x_labels.add(extra);
+            y_values.add(extr.floatValue());
         }
     }
 

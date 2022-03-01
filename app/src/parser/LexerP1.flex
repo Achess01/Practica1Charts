@@ -141,7 +141,12 @@ String = {Q}{StringContent}{Q}
 
 {WhiteSpace} {/* Ignorar */}
 
+[\^´°¬|_!$%&=?'¡¿\w]+ {
+                          Errors.getErrors().addLS(yyline+1, yycolumn+1, "Cadena no definida", yytext(), Errors.LEXICAL);
+                          //return new Symbol(sym.ERROR, yyline+1, yycolumn+1, yytext());
+                      }
+
 [^] {
-        //Errors.getErrors().addLS(yyline+1, yycolumn+1, "Caracter inesperado", yytext(), Errors.LEXICAL);
-        return new Symbol(sym.ERROR, yyline+1, yycolumn+1);
+        Errors.getErrors().addLS(yyline+1, yycolumn+1, "Caracter inesperado", yytext(), Errors.LEXICAL);
+        //return new Symbol(sym.ERROR, yyline+1, yycolumn+1, yytext());
     }
