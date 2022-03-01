@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.TableLayout
 import androidx.annotation.RequiresApi
 import com.example.practica1.parserLexer.Errors.Errors
-import com.example.practica1.reports.Table
+import com.example.practica1.table.Table
 
 class ErrorsActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)

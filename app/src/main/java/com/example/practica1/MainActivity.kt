@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val buttonCharts = findViewById<Button>(R.id.button3)
-        buttonCharts.setOnClickListener {
+        val buttonInfo = findViewById<Button>(R.id.button3)
+        buttonInfo.setOnClickListener {
 
         }
 

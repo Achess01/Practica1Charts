@@ -165,20 +165,19 @@ public class Validate {
        if(porcentaje && total != null){
            Error("El TOTAL no debe estar definido con el tipo PORCENTAJE", totalLine);
            error = true;
-       }
-       else if(porcentaje && total == null){
-           chart = new PieChartCode(titulo, etiquetas, valores, unions, tipo, extra);
        }else if (!porcentaje && total == null){
            Error("El TOTAL no está definido", attributes.get(0).getLine());
            error = true;
-       }else if(!porcentaje && total != null){
+       }else if(porcentaje && total == null && titulo != null && etiquetas != null
+       && valores != null && unions != null && tipo != null && extra != null){
+           chart = new PieChartCode(titulo, etiquetas, valores, unions, tipo, extra);
+       }else if(!porcentaje && total != null && titulo != null && etiquetas != null
+               && valores != null && unions != null && tipo != null && extra != null){
            chart = new PieChartCode(titulo, etiquetas, valores, unions, tipo,total, extra);
-       }
-       if(extra == null){
+       }else{
+           Error(attributes.get(0).getLine(), 0, "Atributos inesperados en la gráfica pie", Attribute.TYPES[attributes.get(0).getType() - 1], Errors.SINTAX);
            error = true;
-           Error(attributes.get(0).getLine(), 0, "Atributo 'extra' no está definido", Attribute.TYPES[attributes.get(0).getType() - 1], Errors.SINTAX);
        }
-       
        if (error) return null;       
        return chart;              
    }

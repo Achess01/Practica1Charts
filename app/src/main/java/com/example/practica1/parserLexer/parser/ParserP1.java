@@ -675,10 +675,16 @@ class CUP$ParserP1$actions {
 		int oleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).left;
 		int oright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).right;
 		Operation o = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).value;
+		int smleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int smright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		Object sm = (Object)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		Operation t = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
-		 RESULT=new Operation("+", o, t);
+		 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.SUMA);
+                            RESULT=new Operation("+", o, t);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("operation",24, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -690,10 +696,16 @@ class CUP$ParserP1$actions {
 		int oleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).left;
 		int oright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).right;
 		Operation o = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).value;
+		int smleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int smright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		Object sm = (Object)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		Operation t = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
-		 RESULT=new Operation("-", o, t);
+		 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.RESTA);
+                            RESULT=new Operation("-", o, t);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("operation",24, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -717,10 +729,16 @@ class CUP$ParserP1$actions {
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).right;
 		Operation t = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).value;
+		int smleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int smright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		Object sm = (Object)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		int fleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		Operation f = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
-		 RESULT=new Operation("*", t, f);
+		 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.MULTIPLICACION);
+                            RESULT=new Operation("*", t, f);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("term",26, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -732,10 +750,16 @@ class CUP$ParserP1$actions {
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).right;
 		Operation t = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)).value;
+		int smleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int smright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		Object sm = (Object)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		int fleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		Operation f = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
-		 RESULT=new Operation("/", t, f);
+		 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.DIVISION);
+                            RESULT=new Operation("/", t, f);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("term",26, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-2)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;
@@ -792,10 +816,16 @@ class CUP$ParserP1$actions {
           case 36: // factor ::= MINUS factor 
             {
               Operation RESULT =null;
+		int smleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).left;
+		int smright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).right;
+		Object sm = (Object)((java_cup.runtime.Symbol) CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)).value;
 		int opleft = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).left;
 		int opright = ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()).right;
 		Operation op = (Operation)((java_cup.runtime.Symbol) CUP$ParserP1$stack.peek()).value;
-		 RESULT=new Operation("minus", op, null);
+		 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.RESTA);
+                            RESULT=new Operation("minus", op, null);
+                        
               CUP$ParserP1$result = parser.getSymbolFactory().newSymbol("factor",25, ((java_cup.runtime.Symbol)CUP$ParserP1$stack.elementAt(CUP$ParserP1$top-1)), ((java_cup.runtime.Symbol)CUP$ParserP1$stack.peek()), RESULT);
             }
           return CUP$ParserP1$result;

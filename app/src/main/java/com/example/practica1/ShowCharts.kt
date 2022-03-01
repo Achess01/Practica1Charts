@@ -1,8 +1,10 @@
 package com.example.practica1
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.LinearLayout
 import com.example.practica1.parserLexer.chartCode.BarChartCode
 import com.example.practica1.parserLexer.chartCode.ChartCode
@@ -26,6 +28,11 @@ class ShowCharts : AppCompatActivity() {
 
         val charts: ArrayList<ChartCode> = Execute.getExecute().theOnes();
         val wrapper = findViewById<LinearLayout>(R.id.wrapper);
+        val buttonReports = findViewById<Button>(R.id.button2)
+        buttonReports.setOnClickListener{
+            val intent = Intent(this, ReportsActivity::class.java).apply {}
+            startActivity(intent)
+        }
         for (chart in charts){
             if(chart is BarChartCode){
                 chart.makeMPAndroidCharts();

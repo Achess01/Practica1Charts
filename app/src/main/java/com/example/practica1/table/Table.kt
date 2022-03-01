@@ -1,4 +1,4 @@
-package com.example.practica1.reports
+package com.example.practica1.table
 
 import android.app.Activity
 import android.os.Build

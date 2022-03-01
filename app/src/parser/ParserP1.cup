@@ -231,19 +231,31 @@ tupla::=
                         ;
                         
 operation::=
-                        operation:o PLUS term:t
-                        {: RESULT=new Operation("+", o, t);:}
-                        |operation:o MINUS term:t
-                        {: RESULT=new Operation("-", o, t);:}
+                        operation:o PLUS:sm term:t
+                        {: 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.SUMA);
+                            RESULT=new Operation("+", o, t);
+                        :}
+                        |operation:o MINUS:sm term:t
+                        {: 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.RESTA);
+                            RESULT=new Operation("-", o, t);
+                        :}
                         |term:t 
                         {:RESULT=t;:}
                         ;
 
 term::=
-                        term:t TIMES factor:f
-                        {: RESULT=new Operation("*", t, f);:}
-                        |term:t DIVISION factor:f
-                        {: RESULT=new Operation("/", t, f);:}
+                        term:t TIMES:sm factor:f
+                        {: 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.MULTIPLICACION);
+                            RESULT=new Operation("*", t, f);
+                        :}
+                        |term:t DIVISION:sm factor:f
+                        {: 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.DIVISION);
+                            RESULT=new Operation("/", t, f);
+                        :}
                         |factor:f 
                         {: RESULT=f;:}
                         ;
@@ -254,8 +266,11 @@ factor::=
                         {: RESULT=new Operation("n", val);:}
                         |LPAREN operation:op RPAREN
                         {: RESULT=op;:}
-                        | MINUS factor:op
-                        {: RESULT=new Operation("minus", op, null);:}
+                        | MINUS:sm factor:op
+                        {: 
+                            Execute.getExecute().addMathSymbol(smleft, smright, MathSymbol.RESTA);
+                            RESULT=new Operation("minus", op, null);
+                        :}
                         ;
 
 cuerpo_pie::=

@@ -15,4 +15,14 @@
         <item>Descripcion</item>
     </string-array>
 
+    <string-array name="header_maths">
+        <item>Operador</item>
+        <item>Línea</item>
+        <item>Columna</item>
+    </string-array>
+
+    <string-array name="header_count">
+        <item>Objeto</item>
+        <item>Cantidad de Definiciones</item>
+    </string-array>
 </resources>

@@ -11,4 +11,7 @@
     <string name="report_errors">Errores</string>
     <string name="report_ls">Sintácticos y léxicos</string>
     <string name="report_sem">Semánticos</string>
+    <string name="report_maths">Ocurrencias de operadores matemáticos</string>
+    <string name="report_count">Gráficos definidos</string>
+    <string name="report_title">Reportes</string>
 </resources>

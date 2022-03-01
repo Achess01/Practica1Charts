@@ -25,6 +25,10 @@ class TextActivity : AppCompatActivity() {
         fun setTextCode(newText: String){
             textCode = newText
         }
+
+        fun compare(compareText: String): Boolean{
+            return textCode == compareText
+        }
     }
 
 
@@ -42,10 +46,13 @@ class TextActivity : AppCompatActivity() {
             textContainer.setText(TextActivity.textCode, TextView.BufferType.EDITABLE)
         }
         buttonCompile.setOnClickListener {
-            TextActivity.setTextCode(textContainer.text.toString())
-            var text = TextActivity.getTextCode()
+            var text = textContainer.text.toString()
+            var isSame = TextActivity.compare(text)
             if(text != ""){
-                Compile.compile(text)
+                if(!isSame) {
+                    TextActivity.setTextCode(text)
+                    Compile.compile(text)
+                }
                 var err = Errors.getErrors().withErrors();
                 if(!err){
                     val toast = Toast.makeText(this, "Sin errores", Toast.LENGTH_SHORT);
