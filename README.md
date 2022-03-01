@@ -6,7 +6,7 @@ Esta aplicación, escrita en su mayoría usando `Java` y para ciertas tareas usa
 
 # Uso del lenguaje
 
-[Untitled](https://www.notion.so/cbe572b3aaf54104af3cc71174b1c24b)
+[Uso](https://www.notion.so/cbe572b3aaf54104af3cc71174b1c24b)
 
 # Uso de la aplicación
 
